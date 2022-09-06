@@ -1,3 +1,4 @@
+# TODO: Add a description for this script.
 Parameters:
   EnvironmentName:
     Description: Environment name will be used in resorces name tags
@@ -27,3 +28,13 @@ Parameters:
     Description: IP range for the private subnet on the other AZ
     Type: String
     Default: 10.0.3.0/24
+
+Resources:
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !Ref VpcCIDR
+      EnableDnsHostnames: true
+      Tags:
+        - Key: Name
+          Value: !Sub ${EnvironmentName} - VPC

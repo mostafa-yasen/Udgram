@@ -20,3 +20,17 @@ Resources:
           FromPort: 80
           ToPort: 80
           CidrIp: 0.0.0.0/0
+
+  WebServerSecGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Web App Security Group
+      GroupName: web-app-security-group
+      VpcId:
+        Fn::ImportValue: !Sub "${EnvironmentName}-VPCID"
+      SecurityGroupIngress:
+        - Description: Inbound rule to allow the LB.
+          IpProtocol: TCP
+          SourceSecurityGroupId: !Ref LBSecGroup
+          FromPort: 80
+          ToPort: 80

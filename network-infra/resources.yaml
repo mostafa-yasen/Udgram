@@ -1,4 +1,7 @@
-# TODO: Add a description for this script.
+Description: >
+  This script deployes the required network infrastructure
+  for our Udgram project.
+
 Parameters:
   EnvironmentName:
     Description: Environment name will be used in resorces name tags

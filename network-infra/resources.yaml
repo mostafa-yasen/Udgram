@@ -1,6 +1,6 @@
 Description: >
   This script deployes the required network infrastructure
-  for our Udgram project.
+  for our Udagram project.
 
 Parameters:
   EnvironmentName:

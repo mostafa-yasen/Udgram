@@ -80,3 +80,18 @@ Resources:
         - DeviceName: "/dev/sdk"
           Ebs:
             VolumeSize: 10
+
+  ServerTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      HealthCheckIntervalSeconds: 10
+      HealthCheckPath: /
+      HealthCheckProtocol: HTTP
+      HealthCheckTimeoutSeconds: 7
+      HealthyThresholdCount: 2
+      Port: 80
+      Protocol: HTTP
+      UnhealthyThresholdCount: 5
+      VpcId:
+        Fn::ImportValue:
+          Fn::Sub: "${EnvironmentName}-VPCID"

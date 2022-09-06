@@ -146,3 +146,27 @@ Resources:
           Values: [/]
       ListenerArn: !Ref "LoadBalancerListener"
       Priority: 1
+
+  CPUPolicy:
+    Type: AWS::AutoScaling::ScalingPolicy
+    Properties:
+      AutoScalingGroupName: !Ref ServerAutoScalingGroup
+      PolicyType: TargetTrackingScaling
+      TargetTrackingConfiguration:
+        PredefinedMetricSpecification:
+          PredefinedMetricType: ASGAverageCPUUtilization
+        TargetValue: 75.0
+
+  RequestCountPolicy:
+    Type: AWS::AutoScaling::ScalingPolicy
+    Properties:
+      AutoScalingGroupName: !Ref ServerAutoScalingGroup
+      PolicyType: TargetTrackingScaling
+      TargetTrackingConfiguration:
+        PredefinedMetricSpecification:
+          PredefinedMetricType: ALBRequestCountPerTarget
+          ResourceLabel: !Join
+            - "/"
+            - - !GetAtt ServerLoadBalancer.LoadBalancerFullName
+              - !GetAtt ServerTargetGroup.TargetGroupFullName
+        TargetValue: 3

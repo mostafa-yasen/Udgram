@@ -50,3 +50,10 @@ Resources:
             Action:
               - "sts:AssumeRole"
       Path: "/"
+
+  InstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Path: "/"
+      Roles:
+        - !Ref UdagramS3ReadOnlyEC2

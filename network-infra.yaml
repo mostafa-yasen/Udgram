@@ -1,0 +1,29 @@
+Parameters:
+  EnvironmentName:
+    Description: Environment name will be used in resorces name tags
+    Type: String
+
+  VpcCIDR:
+    Description: IP range for this VPC
+    Type: String
+    Default: 10.0.0.0/16
+
+  PublicSubnet1CIDR:
+    Description: IP range for the public subnet on the first AZ
+    Type: String
+    Default: 10.0.0.0/24
+
+  PublicSubnet2CIDR:
+    Description: IP range for the public subnet on the other AZ
+    Type: String
+    Default: 10.0.1.0/24
+
+  PrivateSubnet1CIDR:
+    Description: IP range for the private subnet on the first AZ
+    Type: String
+    Default: 10.0.2.0/24
+
+  PrivateSubnet2CIDR:
+    Description: IP range for the private subnet on the other AZ
+    Type: String
+    Default: 10.0.3.0/24

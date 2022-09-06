@@ -1,0 +1,4 @@
+Parameters:
+  EnvironmentName:
+    Description: Environment name will be used in resorces name tags
+    Type: String

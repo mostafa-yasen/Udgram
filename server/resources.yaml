@@ -172,3 +172,12 @@ Resources:
             - - !GetAtt ServerLoadBalancer.LoadBalancerFullName
               - !GetAtt ServerTargetGroup.TargetGroupFullName
         TargetValue: 3
+
+Outputs:
+  DNS:
+    Description: our url of website
+    Value: !Sub
+    - "http://${DNSName}"
+    - { DNSName: !GetAtt "ServerLoadBalancer.DNSName" }
+    Export:
+      Name: !Sub "${EnvironmentName}-URL"

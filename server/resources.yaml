@@ -57,3 +57,26 @@ Resources:
       Path: "/"
       Roles:
         - !Ref UdagramS3ReadOnlyEC2
+
+  ServerLaunchConfig:
+    Type: AWS::AutoScaling::LaunchConfiguration
+    Properties:
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          apt-get update --yes
+          apt-get install --yes awscli
+          apt-get install --yes apache2
+          systemctl start apache2.service
+          cd /var/www/html
+          echo "Hello World!" > index.html
+
+      ImageId: ami-0729e439b6769d6ab
+      IamInstanceProfile: !Ref InstanceProfile
+      SecurityGroups:
+        - Ref: WebServerSecGroup
+      InstanceType: t3.medium
+      BlockDeviceMappings:
+        - DeviceName: "/dev/sdk"
+          Ebs:
+            VolumeSize: 10
